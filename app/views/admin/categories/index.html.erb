@@ -1,0 +1,19 @@
+<h1>Admin::Categories#index</h1>
+<p>Find me in app/views/admin/categories/index.html.erb</p>
+
+  <div class="well">
+    <%= link_to '+ New Category', [:new, :admin, :category], class: 'btn btn-info' %>
+  </div>
+
+<table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Created At</th>
+          <th>Update At</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%=render @categories %>
+      </tbody>
+    </table>
