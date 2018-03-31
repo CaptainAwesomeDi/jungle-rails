@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   resource :session, only:[:new,:create,:destroy]
 
   resources :products do
-    resources :reviews,only:[:create]
+    resources :reviews,only:[:create,:destroy]
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

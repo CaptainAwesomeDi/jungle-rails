@@ -1,7 +1,10 @@
 <section class="products-show">
 
   <header class="page-header">
-    <h1><%= link_to @product.category.name, @product.category %> &raquo; <%= @product.name %></h1>
+    <h1>
+      <%= link_to @product.category.name, @product.category %> &raquo;
+        <%= @product.name %>
+    </h1>
   </header>
 
   <article class="product-detail">
@@ -15,23 +18,51 @@
       <div class="col-sm-8">
         <dl class="dl-horizontal">
           <dt>Name</dt>
-          <dd><%= @product.name %></dd>
+          <dd>
+            <%= @product.name %>
+          </dd>
           <dt>Description</dt>
-          <dd><%= @product.description %></dd>
+          <dd>
+            <%= @product.description %>
+          </dd>
           <dt>Quantity</dt>
-          <dd><%= @product.quantity %></dd>
+          <dd>
+            <%= @product.quantity %>
+          </dd>
           <dt>Price</dt>
-          <dd><%= @product.price %></dd>
+          <dd>
+            <%= @product.price %>
+          </dd>
         </dl>
       </div>
     </div>
-  <div><%= render 'review_form' %></div>
-  <div>
-  <%@product.reviews.reverse_each do |review|%>
-  Description: <%= review.description %>
-  Rating: <%= review.rating %>
-  <% end %>
-  </div>
+    <div>
+      <%= render 'review_form' %>
+    </div>
+    <div>
+      <%@product.reviews.reverse_each do |review|%>
+        <div class="container">
+          <div class="card w-75">
+            <div class="card-body">
+              <h5 class="card-title">User ID: <%= review.user_id%> Rating: <%= review.rating %></h5>
+              <p class="card-text">Description:<%= review.description %></p>
+              <%if current_user%>
+              <%if current_user.id == review.user_id%>
+              <p><%=current_user.id%></p>
+              <p><%=review.product_id%></p>
+                <%= button_to product_review_path(review.product_id,review.id),method:"delete",form_class: "btn btn-primary" do %>
+                DELETE
+                <%end%>
+
+              <%end%>
+              <%end%>
+            </div>
+          </div>
+        </div>
+    </div>
+    <% end %>
+
+      </div>
   </article>
 
 </section>
