@@ -25,7 +25,13 @@
         </dl>
       </div>
     </div>
-
+  <div><%= render 'review_form' %></div>
+  <div>
+  <%@product.reviews.reverse_each do |review|%>
+  Description: <%= review.description %>
+  Rating: <%= review.rating %>
+  <% end %>
+  </div>
   </article>
 
 </section>

@@ -1,0 +1,8 @@
+<%if current_user %>
+<h1>This is My Form</h1>
+<%= form_for [@product,@review], url: product_reviews_path(@product.id) do |f| %>
+  <%= f.text_field :description %>
+   <%= f.select(:rating, options_for_select([[1,1],[2,2],[3,3],[4,4],[5,5]],5)) %> 
+  <%= f.submit "Create" %>
+<% end %>
+<% end %>
