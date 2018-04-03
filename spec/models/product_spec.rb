@@ -2,7 +2,7 @@ require 'rails_helper'
 #require '../../app/models/product.rb'
 
 RSpec.describe Product, type: :model do
-  describe 'Validations'do
+  describe 'Validations' do
     it 'should be saved if user fills every field' do
       @product = Product.new
       @product.name = 'Bob head'

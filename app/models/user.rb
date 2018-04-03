@@ -4,7 +4,21 @@ class User < ActiveRecord::Base
 
     validates :first_name, presence: true
     validates :last_name, presence: true
-    validates :email, presence: true, uniqueness: true
-    validates :password, presence: true
+    validates :email, presence: true
+    validates_uniqueness_of :email, case_sensitive:false
+    validates :password, confirmation:true, length: {  minimum:6 }
+    validates :password_confirmation, presence: true
+
+    def self.authenticate_with_credentials(email,password)
+        email = email.gsub(/\s+/,"")
+        #email.downcase!
+        #@user = User.find_by_email(email)
+        @user = User.where("lower(email) = ?", email.downcase).first
+        if @user && @user.authenticate(password)
+           @user
+        else
+            nil
+        end
+    end
 
 end
